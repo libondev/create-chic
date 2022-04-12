@@ -2,8 +2,13 @@
   "name": "create-chic",
   "version": "0.0.3",
   "packageManager": "pnpm@6.32.3",
-  "description": "",
-  "keywords": [],
+  "description": "template manager for creating new projects.",
+  "keywords": [
+    "cli",
+    "create",
+    "manager",
+    "templates"
+  ],
   "homepage": "https://github.com/banlify/create-chic#readme",
   "bugs": {
     "url": "https://github.com/banlify/create-chic/issues"
