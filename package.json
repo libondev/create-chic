@@ -20,45 +20,32 @@
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.js",
       "import": "./dist/index.mjs",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs"
     },
     "./*": "./dist/*"
-  },
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./dist/index.d.ts"
-      ]
-    }
   },
   "files": [
     "dist"
   ],
   "sideEffects": false,
   "scripts": {
-    "dev": "esno ./scripts/build.ts dev",
-    "build": "rimraf dist && zx ./scripts/build.mjs",
+    "dev": "esno index.ts",
     "lint": "eslint . --fix",
+    "prepare": "husky install",
     "prepublishOnly": "nr build",
+    "build": "rimraf dist && esno ./build.lib.ts",
     "release": "bumpp --commit --push --tag && pnpm publish",
-    "start": "esno src/index.ts",
-    "test": "vitest",
-    "typecheck": "tsc --noEmit",
-    "prepare": "husky install"
+    "test": "vitest"
   },
   "dependencies": {
     "commander": "^9.1.0",
     "degit": "^2.8.4",
     "fs-extra": "^10.0.1",
     "minimist": "^1.2.6",
-    "prompts": "^2.4.2",
-    "shelljs": "^0.8.5"
+    "prompts": "^2.4.2"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.18.9",
@@ -67,12 +54,15 @@
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
     "@types/node": "^17.0.23",
+    "@types/prompts": "^2.0.14",
+    "@types/rimraf": "^3.0.2",
     "bumpp": "^7.1.1",
     "cz-customizable": "^6.3.0",
     "esbuild": "^0.14.35",
     "eslint": "^8.11.0",
     "esno": "^0.14.1",
     "husky": "^7.0.4",
+    "kolorist": "^1.5.1",
     "lint-staged": "^12.3.7",
     "pnpm": "^6.32.3",
     "rimraf": "^3.0.2",

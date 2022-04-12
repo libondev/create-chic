@@ -6,13 +6,18 @@
     "commitlint",
     "esbuild",
     "esno",
+    "kolorist",
+    "outfile",
+    "pinia",
     "pnpm",
     "tsup",
     "typecheck",
     "vite",
-    "vitest"
+    "vitest",
+    "vuex"
   ],
   "prettier.enable": false,
+  "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   }
