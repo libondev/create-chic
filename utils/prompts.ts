@@ -8,18 +8,6 @@ import {
   toValidPackageName,
 } from './index'
 
-// If --type is not specified during initialization,
-// you need to manually select it.
-export const chooseOperateType: PromptObject = {
-  name: 'type',
-  type: 'select',
-  message: 'Choose a type',
-  choices: [
-    { title: 'project', value: 'project', description: 'Create a new project.' },
-    { title: 'plugins', value: 'plugins', description: 'Add plugins to existing projects' },
-  ],
-}
-
 // Options when selecting a new project.
 export const chooseProjectOptions = ({ directory, overwrite }: ProjectOptionsType): PromptObject[] => {
   const initialProjectName = directory || defaultProjectName

@@ -6,7 +6,3 @@ Part of the code and ideas to learn [create-vue](https://github.com/vuejs/create
 ```sh
 npm init chic
 ```
-OR
-```sh
-npx create-chic
-```

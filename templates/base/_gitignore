@@ -1,0 +1,12 @@
+*.log
+*.tgz
+.cache
+.idea
+.output
+.DS_Store
+coverage
+dist
+lib-cov
+logs
+node_modules
+temp
