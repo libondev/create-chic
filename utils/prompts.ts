@@ -1,7 +1,12 @@
 import { red } from 'kolorist'
 import type { PromptObject } from 'prompts'
 import type { ProjectOptionsType } from '../types/index'
-import { canSafelyOverwrite, defaultProjectName } from './index'
+import {
+  canSafelyOverwrite,
+  defaultProjectName,
+  isValidPackageName,
+  toValidPackageName,
+} from './index'
 
 // If --type is not specified during initialization,
 // you need to manually select it.
@@ -11,7 +16,7 @@ export const chooseOperateType: PromptObject = {
   message: 'Choose a type',
   choices: [
     { title: 'project', value: 'project', description: 'Create a new project.' },
-    { title: 'plugins', value: 'plugins', description: 'Add plug-ins to existing projects' },
+    { title: 'plugins', value: 'plugins', description: 'Add plugins to existing projects' },
   ],
 }
 
@@ -22,7 +27,7 @@ export const chooseProjectOptions = ({ directory, overwrite }: ProjectOptionsTyp
   return [
     {
       name: 'projectName',
-      type: 'text',
+      type: directory ? null : 'text',
       message: 'Project name:',
       initial: initialProjectName,
     },
@@ -38,11 +43,18 @@ export const chooseProjectOptions = ({ directory, overwrite }: ProjectOptionsTyp
     {
       name: 'overwriteChecker',
       type: (_, values) => {
-        if (values.shouldOverwrite === false) {
+        if (values.overwrite === false) {
           throw new Error(`${red('✖')} Operation cancelled`)
         }
         return null
       },
+    },
+    {
+      name: 'packageName',
+      type: () => (isValidPackageName(directory) ? null : 'text'),
+      message: 'Package name:',
+      initial: () => toValidPackageName(directory),
+      validate: dir => isValidPackageName(dir) || 'Invalid package.json name',
     },
   ]
 }
@@ -50,12 +62,12 @@ export const chooseProjectOptions = ({ directory, overwrite }: ProjectOptionsTyp
 // Options when you select a new plugins.
 export const choosePluginsOptions = (): PromptObject[] => [
   {
-    name: 'store',
-    type: 'select',
-    message: 'Store type:',
+    name: 'plugins',
+    type: 'multiselect',
+    message: 'Select plugins:',
     choices: [
-      { title: 'pinia', value: 'pinia', description: 'Add pinia@2 to the project.' },
-      { title: 'vuex', value: 'vuex', description: 'Add vuex@4 to the project.' },
+      { title: 'husky', value: 'husky', description: 'Add husky to the project.' },
+      { title: 'pinia', value: 'pinia', description: 'Add pinia to the project.' },
     ],
   },
 ]

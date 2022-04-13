@@ -23,18 +23,18 @@ async function bootstrap(): Promise<void> {
   const type: OperatingType = argv.type || (await prompts(chooseOperateType)).type
 
   const overwrite = argv.overwrite
-  const directory = argv._[0] || argv.projectName || '.'
+  const directory = argv._[0] || argv.projectName
 
   if (type === 'project') {
     return projectGenerator(
-      cwd,
+      { cwd, directory },
       await prompts(chooseProjectOptions({ directory, overwrite })),
     )
   }
 
   if (type === 'plugins') {
     return pluginsGenerator(
-      cwd,
+      { cwd, directory },
       await prompts(choosePluginsOptions()),
     )
   }

@@ -15,14 +15,14 @@ export const toValidPackageName = (name: string) =>
     .replace(/^[._]/, '')
     .replace(/[^a-z0-9-~]+/g, '-')
 
-export const emptyCurrentDirectory = async(directory: string) => {
+export function canSafelyOverwrite(directory: string) {
+  return !existsSync(directory) || readdirSync(directory).length === 0
+}
+
+export const emptyTargetDirectory = async(directory: string) => {
   if (!existsSync(directory)) {
     return
   }
 
   rimraf.sync(directory)
-}
-
-export function canSafelyOverwrite(directory: string) {
-  return !existsSync(directory) || readdirSync(directory).length === 0
 }
