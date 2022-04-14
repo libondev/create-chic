@@ -68,7 +68,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "lint-staged": {
-    "*.{vue,js,ts,tsx,jsx}": "eslint --fix"
+    "*.{vue,js,ts,tsx,jsx,json}": "pnpm lint"
   },
   "config": {
     "commitizen": {
