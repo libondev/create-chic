@@ -20,7 +20,6 @@
     "templates"
   ],
   "bin": {
-    "lib": "dist/lib.cjs",
     "create-chic": "dist/chic.cjs"
   },
   "homepage": "https://github.com/banlify/create-chic#readme",
@@ -37,6 +36,7 @@
   },
   "dependencies": {
     "commander": "^9.1.0",
+    "fast-glob": "^3.2.11",
     "fs-extra": "^10.0.1",
     "minimist": "^1.2.6",
     "prompts": "^2.4.2"
