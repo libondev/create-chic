@@ -9,40 +9,34 @@
     "manager",
     "templates"
   ],
-  "homepage": "https://github.com/banlify/create-chic#readme",
-  "bugs": {
-    "url": "https://github.com/banlify/create-chic/issues"
-  },
   "author": "chestnut <banlify@163.com>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/banlify/create-chic.git"
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
-    "./*": "./dist/*"
-  },
+  "main": "./dist/chic.cjs",
   "files": [
-    "dist"
+    "dist",
+    "templates"
   ],
+  "bin": {
+    "lib": "dist/lib.cjs",
+    "create-chic": "dist/chic.cjs"
+  },
+  "homepage": "https://github.com/banlify/create-chic#readme",
+  "bugs": {
+    "url": "https://github.com/banlify/create-chic/issues"
+  },
   "sideEffects": false,
   "scripts": {
-    "dev": "esno index.ts",
     "lint": "eslint . --fix",
     "prepare": "husky install",
     "prepublishOnly": "nr build",
-    "build": "rimraf dist && esno ./build.lib.ts",
-    "release": "bumpp --commit --push --tag && pnpm publish",
-    "test": "vitest"
+    "build": "rimraf dist && esno ./build.ts",
+    "release": "bumpp --commit --push --tag && pnpm publish"
   },
   "dependencies": {
     "commander": "^9.1.0",
-    "degit": "^2.8.4",
     "fs-extra": "^10.0.1",
     "minimist": "^1.2.6",
     "prompts": "^2.4.2"
@@ -67,6 +61,7 @@
     "pnpm": "^6.32.3",
     "rimraf": "^3.0.2",
     "typescript": "^4.6.2",
+    "unbuild": "^0.7.4",
     "zx": "^6.0.7"
   },
   "publishConfig": {

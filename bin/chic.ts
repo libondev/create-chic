@@ -7,14 +7,14 @@ import minimist from 'minimist'
 import {
   choosePluginsOptions,
   chooseProjectOptions,
-} from './utils/prompts'
+} from '../utils/prompts'
 
 import {
   pluginsGenerator,
   projectGenerator,
-} from './utils/generator'
+} from '../utils/generator'
 
-import type { OperatingType } from './types/index'
+import type { OperatingType } from '../types/index'
 
 async function bootstrap(): Promise<void> {
   const cwd = process.cwd()
