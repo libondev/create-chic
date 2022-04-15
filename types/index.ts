@@ -7,5 +7,10 @@ export interface ProjectOptionsType {
 
 export interface GeneratorOptionsType {
   cwd: string
+  root: string
   directory: string
+  overwrite?: boolean
 }
+
+export type BaseJsonType = Record<string, string>
+export type PackageJsonType = Record<string, string | BaseJsonType>

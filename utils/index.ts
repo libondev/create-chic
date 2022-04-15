@@ -1,4 +1,3 @@
-import rimraf from 'rimraf'
 import { existsSync, readdirSync } from 'fs-extra'
 
 export const defaultProjectName = 'demo-project'
@@ -15,22 +14,14 @@ export const toValidPackageName = (name: string) =>
     .replace(/^[._]/, '')
     .replace(/[^a-z0-9-~]+/g, '-')
 
+// 如果目标文件夹不存在或者内部没有文件则表示可以安全覆盖
 export function canSafelyOverwrite(directory: string) {
   return !existsSync(directory) || readdirSync(directory).length === 0
 }
 
-export function underlineToDot(path: string) {
-  if (path.startsWith('_')) {
-    return path.replace(/^_/, '.')
-  }
-
-  return path
-}
-
-export const emptyTargetDirectory = async(directory: string) => {
-  if (!existsSync(directory)) {
-    return
-  }
-
-  rimraf.sync(directory)
+// 下划线开头的文件转成 . 开头
+export function underlineTransformToDot(path: string) {
+  return path.replace(/^_|\/_/, '.')
+    .replace(/\/_/g, '/.')
+    .replace(/\\_/g, '\\.')
 }

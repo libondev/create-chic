@@ -1,0 +1,24 @@
+{
+  "cSpell.words": [
+    "banlify",
+    "breakline",
+    "bumpp",
+    "commitlint",
+    "esbuild",
+    "esno",
+    "kolorist",
+    "multiselect",
+    "outfile",
+    "pinia",
+    "pnpm",
+    "tsup",
+    "typecheck",
+    "vite",
+    "vitejs",
+    "vitest",
+    "vuex"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}

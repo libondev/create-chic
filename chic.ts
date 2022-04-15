@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { join } from 'path'
 import prompts from 'prompts'
 import { red } from 'kolorist'
 import minimist from 'minimist'
@@ -12,16 +13,16 @@ import {
 import {
   pluginsGenerator,
   projectGenerator,
-} from './utils/generator'
+} from './utils/generators'
 
 import type { OperatingType } from './types/index'
 
 async function bootstrap(): Promise<void> {
   const cwd = process.cwd()
   const argv = minimist(process.argv.slice(2), { boolean: true })
-
   const overwrite = argv.overwrite
   const directory = argv._[0] || argv.projectName
+  const root = join(cwd, directory)
 
   const type: OperatingType = argv.type || (await prompts({
     name: 'type',
@@ -35,7 +36,7 @@ async function bootstrap(): Promise<void> {
 
   if (type === 'project') {
     return projectGenerator(
-      { cwd, directory },
+      { cwd, directory, overwrite, root },
       await prompts([
         ...chooseProjectOptions({ directory, overwrite }),
         ...choosePluginsOptions(),
@@ -45,7 +46,7 @@ async function bootstrap(): Promise<void> {
 
   if (type === 'plugins') {
     return pluginsGenerator(
-      { cwd, directory },
+      { cwd, directory, root },
       await prompts(choosePluginsOptions()),
     )
   }

@@ -14,6 +14,7 @@
     "tsup",
     "typecheck",
     "vite",
+    "vitejs",
     "vitest",
     "vuex"
   ],

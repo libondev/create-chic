@@ -21,7 +21,7 @@ export const chooseProjectOptions = ({ directory, overwrite }: ProjectOptionsTyp
     },
     {
       name: 'overwrite',
-      type: () => ((canSafelyOverwrite(directory) || overwrite) ? null : 'confirm'),
+      type: () => ((overwrite || canSafelyOverwrite(directory)) ? null : 'confirm'),
       message: () => {
         const prompt = directory === '.' ? 'Current directory' : `Target directory "${directory}"`
 
@@ -54,8 +54,10 @@ export const choosePluginsOptions = (): PromptObject[] => [
     type: 'multiselect',
     message: 'Select plugins:',
     choices: [
-      { title: 'husky', value: 'husky', description: 'Add husky to the project.' },
       { title: 'pinia', value: 'pinia', description: 'Add pinia to the project.' },
+      { title: 'vitest', value: 'vitest', description: 'Add vitest to the project.' },
+      { title: 'typescript', value: 'typescript', description: 'Add typescript to the project.' },
+      { title: 'formatters', value: 'formatters', description: 'Add [husky,eslint,commitlint,lint-staged] to the project.' },
     ],
   },
 ]
