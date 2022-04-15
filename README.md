@@ -1,6 +1,6 @@
 # create-chic
 
-Part of the code and ideas to learn [create-vue](https://github.com/vuejs/create-vue).
+Some code and template implementations reference [create-vue](https://github.com/vuejs/create-vue). Thanks to the VueJS team and all its members
 
 ## usage
 ```sh
